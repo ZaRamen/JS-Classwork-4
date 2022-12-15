@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="script.js"></script>
+<script>
+    function initialize()
+    {
+        myOrganimsOutput = document.getElementById("orgs");
+        firstSelectionOutput = document.getElementById('1st');
+        secondSelectionOutput = document.getElementById('2nd');
+        organismForm = document.getElementById('orgsForm');
+
+        myOrganisms = [ORGANISM_LIST[0], ORGANISM_LIST[1], ORGANISM_LIST[2], ORGANISM_LIST[3]];
+        firstSelection = NONE;
+        secondSelection = NONE;
+
+        display();
+    }
+    function display()
+    {
+        myOrganimsOutput.innerHTML = "1: " + getOrganismData(myOrganisms[0], NAME);
+        for (let i = 1; i < myOrganisms.length; i++)
+        {
+            myOrganimsOutput.innerHTML += "<br>" + (i+1) + ":" + getOrganismData(myOrganisms[i], NAME);
+            firstSelection.innerHTML = getOrganismData(firstSelection, NAME);
+            secondSelection.innerHTML = getOrganismData(secondSelection, NAME);
+        }
+    }
+    function selectOrganism()
+    {
+        var idx = parseInt(organismForm.orgse1.value) - 1;
+        if (idx < 0 || idx >= myOrganisms.length) 
+        {
+            return;
+        }
+        
+        if (firstSelection == NONE || (firstSelection != NONE && secondSelection != NONE))
+        {
+            firstSelection = myOrganisms[idx];
+            secondSelection = NONE;
+        }
+        else
+        {
+            secondSelection = myOrganisms[idx];
+            addNewOrganism();
+        }
+        organismForm.orgse1.value = '';
+        display();
+    }
+    function addNewOrganism()
+    {
+        var newOrganism = findCombo (firstSelection, secondSelection);
+        if (newOrganism != NONE)
+        {
+            if (myOrganisms.indexOf(newOrganism) < 0)
+            {
+                myOrganisms.push(newOrganism);
+            }
+        }
+    }
+    function deleteOrganism()
+    {
+        var idx = parseInt(organismForm.orgse1.value) - 1;
+        if (idx < ORGANISM_OFFSET || idx >= myOrganisms.length) return;
+        myOrganism.splice(idx, 1);
+        organismForm.orgse1.value = '';
+        display();
+    }
+</script>
+<style>
+    body
+    {
+        background-image: url("potion.png");
+        background-repeat: no-repeat;
+        background-color: lightgray;
+        background-size: 350px;
+        background-position: right top;
+        background-attachment: fixed;
+    }
+</style>
+<body onload="initialize();">
+    <h1>
+        <span>Alchemy</span>
+    </h1>
+    <h2>My Organism</h2>
+    <div id="orgs">
+
+    </div>
+    <form action="" id="orgsForm">
+        <input type="number" name="orgse1">
+    </form>
+    <button onclick="selectOrganism();">Select Organism</button>
+    <button onclick="deleteOrganism();">Delete Organism</button>
+
+    <hr>
+
+    <p>
+        <span id="1st"></span> AND <span id="2nd"></span>
+    </p>
+</body>
+</html>
