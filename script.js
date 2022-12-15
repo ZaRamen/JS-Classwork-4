@@ -16,6 +16,7 @@ function areParents(organism, parent1, parent2)
     var parent1 = getOrganismData(parent1, NAME);
     var parent2 = getOrganismData(parent2, NAME);
 
+    
     return (firstParent == parent1 || secondParent == parent1) && (firstParent == parent2 || secondParent == parent2);
 }
 function findOrganism(orgname)

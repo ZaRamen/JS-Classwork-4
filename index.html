@@ -27,8 +27,8 @@
         for (let i = 1; i < myOrganisms.length; i++)
         {
             myOrganimsOutput.innerHTML += "<br>" + (i+1) + ":" + getOrganismData(myOrganisms[i], NAME);
-            firstSelection.innerHTML = getOrganismData(firstSelection, NAME);
-            secondSelection.innerHTML = getOrganismData(secondSelection, NAME);
+            firstSelectionOutput.innerHTML = getOrganismData(firstSelection, NAME);
+            secondSelectionOutput.innerHTML = getOrganismData(secondSelection, NAME);
         }
     }
     function selectOrganism()
@@ -54,7 +54,7 @@
     }
     function addNewOrganism()
     {
-        var newOrganism = findCombo (firstSelection, secondSelection);
+        var newOrganism = findCombo(firstSelection, secondSelection);
         if (newOrganism != NONE)
         {
             if (myOrganisms.indexOf(newOrganism) < 0)
@@ -67,7 +67,7 @@
     {
         var idx = parseInt(organismForm.orgse1.value) - 1;
         if (idx < ORGANISM_OFFSET || idx >= myOrganisms.length) return;
-        myOrganism.splice(idx, 1);
+        myOrganisms.splice(idx, 1);
         organismForm.orgse1.value = '';
         display();
     }
