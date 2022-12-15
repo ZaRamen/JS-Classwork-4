@@ -41,3 +41,13 @@ function findCombo(org1, org2)
     }
     return NONE;
 }
+
+let msg = "hello world"
+console.log(msg.indexOf(' '));
+console.log(msg.substring(1, 4));
+
+let arr = ["hi", "no"];
+arr.push("hey");
+console.log(arr);
+arr.pop();
+console.log(arr)
