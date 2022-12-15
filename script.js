@@ -1,4 +1,5 @@
-const ORGANISM_LIST = ["Air;None;None", "Earth;None;None;", "Water;None;None;","Fire;None;None;", "Alcohol;Fire;Water"]
+const ORGANISM_LIST = ["Air;None;None", "Earth;None;None;", "Water;None;None;","Fire;None;None;", "Alcohol;Fire;Water", "Dust;Air;Earth", "Energy;Air;Fire",
+                       "Lava;Earth;Fire", "Swamp;Earth;Water", "Mud;Dust;Water"]
 const NAME = 0, PARENT_1 = 1, PARENT_2 = 2;
 const ORGANISM_OFFSET = 4;
 const NONE = "None";
